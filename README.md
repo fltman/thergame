@@ -1,2 +1,2 @@
 # thergame
-A simople never ending adventure game
+A simple never ending adventure game
