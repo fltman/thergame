@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure Game</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename=scene.image_path) }}");
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <img src="{{ url_for('static', filename=scene.image_path) }}" alt="Scene Image" class="scene-image">
+
+        <div class="scene-description">
+            {{ scene.text|safe }}
+            
+            <button id="playButton" data-text='{{ scene.text | tojson | safe }}'>Play Audio</button>
+            <audio id="audioPlayer" style="display: none;"></audio>
+            
+        </div>
+
+        <div class="options">
+            {% if scene.option_1_text %}
+                <a href="{{ url_for('scene_choice', scene_id=scene.id, choice=1) }}" class="option" onclick="showProgress()">
+                    {{ scene.option_1_text }}
+                </a>
+            {% endif %}
+            {% if scene.option_2_text %}
+                <a href="{{ url_for('scene_choice', scene_id=scene.id, choice=2) }}" class="option" onclick="showProgress()">
+                    {{ scene.option_2_text }}
+                </a>
+            {% endif %}
+            {% if scene.option_3_text %}
+                <a href="{{ url_for('scene_choice', scene_id=scene.id, choice=3) }}" class="option" onclick="showProgress()">
+                    {{ scene.option_3_text }}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="progress-indicator">
+        <div class="spinner"></div>
+    </div>
+
+    <script>
+        function showProgress() {
+            document.querySelector('.progress-indicator').style.display = 'flex';
+        }
+    </script>
+    
+    <script>
+        document.getElementById('playButton').addEventListener('click', function() {
+            const text = JSON.parse(this.getAttribute('data-text'));
+            playAudio(text);
+        });
+        
+        function playAudio(text) {
+            const playButton = document.getElementById('playButton');
+            const audioPlayer = document.getElementById('audioPlayer');
+            
+            playButton.disabled = true;
+            playButton.textContent = 'Loading...';
+            
+            axios.post('/play', { text: text }, { responseType: 'blob' })
+            .then(response => {
+                const audioBlob = new Blob([response.data], { type: 'audio/mpeg' });
+                const audioUrl = URL.createObjectURL(audioBlob);
+                audioPlayer.src = audioUrl;
+                audioPlayer.play();
+                playButton.textContent = 'Playing...';
+                
+                audioPlayer.onended = function() {
+                    playButton.disabled = false;
+                    playButton.textContent = 'Play Audio';
+                };
+            })
+            .catch(error => {
+                console.error('Error fetching audio:', error);
+                playButton.disabled = false;
+                playButton.textContent = 'Play Audio';
+                alert('Error playing audio. Please try again.');
+            });
+        }
+    </script>
+</body>
+</html>

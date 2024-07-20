@@ -1,0 +1,292 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px) brightness(0.7);
+    z-index: -1;
+}
+
+.content {
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+    width: 90%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+h1, h2 {
+    font-family: 'Cinzel', serif;
+    color: #f9d71c;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-top: 0;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+/* Index Page Styles */
+.adventure-options {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.new-adventure, .existing-adventures {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #f9d71c;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #f9d71c;
+    border-radius: 6px;
+    resize: vertical;
+    font-family: 'Roboto', sans-serif;
+    min-height: 100px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    background-color: #f9d71c;
+    color: #333;
+}
+
+.btn-primary:hover {
+    background-color: #fae052;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.adventure-dropdown {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #f9d71c;
+    border-radius: 6px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* Existing adventures list */
+.existing-adventures ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.existing-adventures li {
+    margin-bottom: 10px;
+}
+
+.existing-adventures a {
+    display: block;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.existing-adventures a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Scene Page Styles */
+.scene-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    align-self: center;
+    margin-bottom: 20px;
+}
+
+.scene-description {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-size: 1.2em;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.option {
+    background-color: #3498db;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 400;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.option:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Error Styles */
+.error {
+    color: #e74c3c;
+    background-color: rgba(231, 76, 60, 0.2);
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Progress Indicator Styles */
+.progress-indicator {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .content {
+        width: 95%;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .scene-description, .options {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 768px) {
+    .adventure-options {
+        flex-direction: row;
+    }
+
+    .new-adventure, .existing-adventures {
+        flex: 1;
+    }
+}
